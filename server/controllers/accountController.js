@@ -20,6 +20,25 @@ class AccountController {
                 currency: currency || 'USD', // Если не указана валюта, ставим USD
                 accountNumber: accountNumber // Добавляем номер счета
             });
+            if (accountType === 'savings') {
+                // Каждые 20 секунд начислять 10 тг на сберегательный счет
+                setInterval(async () => {
+                    try {
+                        // Получаем текущий счет
+                        const account = await Account.findById(newAccount._id);
+
+                        // Проверяем, что аккаунт существует и его тип 'savings'
+                        if (account && account.accountType === 'savings') {
+                            // Начисляем 10 тг
+                            account.balance += 10; // Добавляем 10 тг на баланс
+                            await account.save(); // Сохраняем обновленный баланс
+                            console.log(`10 тг начислено на счет №${account.accountNumber}`);
+                        }
+                    } catch (error) {
+                        console.error('Error while adding interest:', error);
+                    }
+                }, 20000);
+            }
 
             res.json({ message: 'Account created successfully', account: newAccount });
         } catch (error) {

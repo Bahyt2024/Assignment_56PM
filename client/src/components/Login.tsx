@@ -16,6 +16,11 @@ const Login: React.FC = () => {
             console.error('Login failed', error);  // Логируем ошибку, если вход не удался
         }
     };
+
+    const handleRegister = () => {
+        navigate('/register'); // Перенаправление на страницу регистрации
+    };
+
     return (
         <div className="max-w-md mx-auto mt-10 p-5 border rounded shadow">
             <h2 className="text-xl font-bold mb-4">Login</h2>
@@ -34,11 +39,20 @@ const Login: React.FC = () => {
                 placeholder="Password"
             />
             <button
-                className="w-full p-2 bg-blue-500 text-white rounded"
+                className="w-full p-2 bg-blue-500 text-white rounded mb-4"
                 onClick={handleLogin}
             >
                 Login
             </button>
+            <div className="text-center">
+                <span>Don't have an account?</span>
+                <button
+                    className="ml-2 text-blue-500 hover:underline"
+                    onClick={handleRegister}
+                >
+                    Register
+                </button>
+            </div>
         </div>
     );
 };

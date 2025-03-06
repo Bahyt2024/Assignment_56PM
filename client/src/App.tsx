@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import LoginPage from './pages/LoginPage';
 import TransactionPage from './pages/TransactionPage';
 import AccountDetail from "./components/AccountDetail.tsx";
+import RegisterPage from './pages/RegisterPage';
 const App: React.FC = () => {
     const token = localStorage.getItem('token') || ''; // Get the token from localStorage
 
@@ -30,6 +31,7 @@ const App: React.FC = () => {
                     }
                 />
                 <Route path="/account/:id" element={<AccountDetail />} /> {/* Новый маршрут */}
+                <Route path="/register" element={<RegisterPage />} />
 
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/transactions" element={<TransactionPage />} />
