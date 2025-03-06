@@ -1,19 +1,12 @@
-import {createContext} from 'react'
-import { createRoot } from 'react-dom/client'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';  // подключение стилей (если вы используете Tailwind CSS, например)
+import App from './App';  // импорт основного компонента приложения
 
-import App from './App.tsx'
-import Store from "./store/store.ts";
-const store = new Store()
-interface State {
-    store: Store;
-}
-export const Context = createContext<State>({
-    store,
-})
-createRoot(document.getElementById('root')!).render(
-  <Context.Provider value={{
-      store,
-  }}>
-    <App />
-  </Context.Provider>,
-)
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);  // получаем элемент с id 'root'
+
+root.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);
